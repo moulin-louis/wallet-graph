@@ -11,5 +11,14 @@ export default defineNuxtConfig({
       },
     },
   },
-  devtools: { enabled: true },
+  runtimeConfig: {
+    heliusApi: "",
+  },
+  devtools: {
+    enabled: true,
+    timeline: {
+      enabled: true,
+    },
+  },
 });
+
