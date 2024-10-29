@@ -6,6 +6,7 @@ export default defineEventHandler(async () => {
     console.error("missing helius API");
     return;
   }
+  console.log("add test for lint-styage  ");
   return createError({ cause: "dont overrun API usage", status: 429 });
   console.log(`heliusAPI = ${runConfig.heliusApi}`);
   const helius = new Helius(runConfig.heliusApi);
