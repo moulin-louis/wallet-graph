@@ -1,14 +1,24 @@
-import Aura from "@primevue/themes/aura";
+import Aura from '@primevue/themes/aura';
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: "2024-04-03",
-  modules: ["@nuxt/eslint", "@nuxtjs/tailwindcss", "@primevue/nuxt-module"],
-  primevue: {
-    options: {
-      theme: {
-        preset: Aura,
-      },
+  modules: ['@nuxt/eslint', '@nuxtjs/tailwindcss', '@primevue/nuxt-module'],
+  imports: {
+    dirs: ['./types', './types/**'],
+  },
+  devtools: {
+    enabled: true,
+    timeline: {
+      enabled: true,
+    },
+  },
+  runtimeConfig: {
+    heliusApi: '',
+  },
+  compatibilityDate: '2024-04-03',
+  nitro: {
+    experimental: {
+      openAPI: true,
     },
   },
   eslint: {
@@ -16,18 +26,16 @@ export default defineNuxtConfig({
       stylistic: {
         indent: 2,
         semi: true,
-        quotes: "single",
+        quotes: 'single',
         arrowParens: true,
       },
     },
   },
-  runtimeConfig: {
-    heliusApi: "",
-  },
-  devtools: {
-    enabled: true,
-    timeline: {
-      enabled: true,
+  primevue: {
+    options: {
+      theme: {
+        preset: Aura,
+      },
     },
   },
 });
