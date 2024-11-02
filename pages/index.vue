@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { EnrichedTransaction } from 'helius-sdk';
 
-const { data, status } = await useFetch<EnrichedTransaction[]>('/api/transactions/all', {
+const { data } = await useFetch<EnrichedTransaction[]>('/api/transactions/all', {
   method: 'GET',
   params: {
     address: '4Tb6PVePDK3ghMDwJsizi73qSWycnfHbrowWUx72n8dy',
@@ -11,32 +11,21 @@ const { data, status } = await useFetch<EnrichedTransaction[]>('/api/transaction
 
 <template>
   <div>
-    <div v-if="status === 'pending'">
-      Pending
+    <TopBar />
+    <FiltersBar />
+    <div v-if="data === null">
+      Data is null
     </div>
     <div v-else>
-      <div v-if="data === null">
-        Data is null
-      </div>
-      <div v-else>
-        <TxView :tx="data[0]" />
-      </div>
+      <VirtualScroller
+        :items="data"
+        :item-size="100"
+        class="border border-surface-200 dark:border-surface-700 rounded w-full h-screen"
+      >
+        <template #item="{ item }">
+          <TxView :tx="item" />
+        </template>
+      </VirtualScroller>
     </div>
-    <!--
-  <TopBar>
-    <ActivityChart /> <AltAddress /> <Programs /> <Settings />
-  <TopBar/>
-  <Filters>
-    <ResetFilters />
-    <ProgramsFilters />
-    <AddresssFilters />
-    <TokensFilters />
-  <Filters />
-  <Transactions>
-    <ActiveDay>
-      < List of transaction {Time, Balance change, program used, txId, Address} />
-    <ActiveDay />
-  <Transactions/>
-  -->
   </div>
 </template>

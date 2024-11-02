@@ -12,15 +12,20 @@ export default defineNuxtConfig({
       enabled: true,
     },
   },
+  // NOTE: import primeicons css
+  css: ['primeicons/primeicons.css'],
+  /// NOTE : define heliusApi var, defined in a separate .env
   runtimeConfig: {
     heliusApi: '',
   },
   compatibilityDate: '2024-04-03',
   nitro: {
     experimental: {
+      /// NOTE: enable openAPI endpoints
       openAPI: true,
     },
   },
+  /// NOTE: use eslint for style check and format
   eslint: {
     config: {
       stylistic: {
@@ -31,6 +36,7 @@ export default defineNuxtConfig({
       },
     },
   },
+  /// NOTE: config default theme for primeVue
   primevue: {
     options: {
       theme: {
